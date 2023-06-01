@@ -1,0 +1,44 @@
+name: prototipo_cnpq
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  cupertino_icons: ^1.0.2
+  provider: ^6.0.5
+  intl: ^0.18.0
+  dio: ^5.1.0
+  mobx: ^2.1.4
+  flutter_mobx: ^2.0.6+5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+  mobx_codegen: ^2.1.1
+  build_runner: ^2.3.3
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets\imgs\logo_gov.png
+    - assets\imgs\logo_cnpq.png
+    - assets\imgs\logo_cnpq_completo.png
+
+  fonts:
+    - family: rawline
+      fonts:
+        - asset: assets\fonts\rawline-500.ttf
