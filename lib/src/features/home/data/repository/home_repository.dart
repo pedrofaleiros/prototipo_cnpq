@@ -46,3 +46,34 @@ Dio getDio() {
 
   return dio;
 }
+
+List<ArticleModel> mockData = [
+  ArticleModel(
+      id: '10001',
+      titulo: 'Inteligência Artificial na Área Médica: O Futuro da Saúde',
+      tituloEn: 'Artificial Intelligence in Healthcare: The Future of Medicine',
+      anoProducao: 2021,
+      url: 'https://www.google.com'),
+  ArticleModel(
+      id: '10002',
+      titulo: 'A Revolução Blockchain: Transformando Indústrias e Transações',
+      tituloEn:
+          'The Blockchain Revolution: Transforming Industries and Transactions',
+      anoProducao: 2022,
+      url: 'https://www.google.com'),
+  ArticleModel(
+      id: '10003',
+      titulo: 'A Importância da Energia Renovável para um Futuro Sustentável',
+      anoProducao: 2020,
+      url: 'https://www.google.com'),
+  ArticleModel(
+      id: '10004',
+      titulo: 'A Evolução dos Carros Elétricos: Rumo à Mobilidade Sustentável',
+      anoProducao: 2023,
+      url: 'https://www.google.com'),
+  ArticleModel(
+      id: '10005',
+      tituloEn: 'Sustainable Development: A Better Future for Our Planet',
+      anoProducao: 2021,
+      url: 'https://www.google.com'),
+];

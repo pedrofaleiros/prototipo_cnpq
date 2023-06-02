@@ -12,16 +12,14 @@ class FilterValidator {
       return false;
     }
 
-    final RegExp regex = RegExp(r'^[a-zA-Z0-9 áàâãéèêíïóôõöúçñ]*$');
+    final RegExp regex = RegExp(r'^[a-zA-Z0-9 -áàâãéèêíïóôõöúçñ]*$');
     return regex.hasMatch(text);
   }
 
   String getQuery(String text, bool isPortuguese) {
     final field = isPortuguese ? 'titulo' : 'titulo_en';
 
-    // if (!validateText(text)) {
-    //   return "*:*";
-    // }
+    text = text.replaceAll('-', '');
 
     var palavras = text.split(" ");
 

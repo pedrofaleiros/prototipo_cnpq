@@ -21,6 +21,9 @@ abstract class _HomeViewModelBase with Store {
   @observable
   bool isLoading = false;
 
+  @observable
+  String? helperText;
+
   @action
   Future<void> loadArticles() async {
     isLoading = true;
@@ -34,6 +37,12 @@ abstract class _HomeViewModelBase with Store {
         isPortuguese: filter.isPortuguese,
       ),
     );
+
+    if (response == null || response.isEmpty) {
+      helperText = 'Sem resultados';
+    } else {
+      helperText = null;
+    }
 
     articles = response ?? [];
 

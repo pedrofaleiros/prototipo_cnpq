@@ -88,6 +88,39 @@ mixin _$FilterViewModel on _FilterViewModelBase, Store {
   }
 
   @override
+  void setInitialDate(int? value) {
+    final _$actionInfo = _$_FilterViewModelBaseActionController.startAction(
+        name: '_FilterViewModelBase.setInitialDate');
+    try {
+      return super.setInitialDate(value);
+    } finally {
+      _$_FilterViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFinalDate(int? value) {
+    final _$actionInfo = _$_FilterViewModelBaseActionController.startAction(
+        name: '_FilterViewModelBase.setFinalDate');
+    try {
+      return super.setFinalDate(value);
+    } finally {
+      _$_FilterViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void changeFieldLang(bool value) {
+    final _$actionInfo = _$_FilterViewModelBaseActionController.startAction(
+        name: '_FilterViewModelBase.changeFieldLang');
+    try {
+      return super.changeFieldLang(value);
+    } finally {
+      _$_FilterViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 rows: ${rows},

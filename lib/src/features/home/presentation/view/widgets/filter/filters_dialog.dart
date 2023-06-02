@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/date_filters.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/field_radio_buttons.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/filter/date_filters.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/filter/field_radio_buttons.dart';
 
 import 'rows_dropdown_button.dart';
 

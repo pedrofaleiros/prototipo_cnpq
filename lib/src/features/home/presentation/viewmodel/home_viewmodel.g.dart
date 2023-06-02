@@ -41,6 +41,22 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
+  late final _$helperTextAtom =
+      Atom(name: '_HomeViewModelBase.helperText', context: context);
+
+  @override
+  String? get helperText {
+    _$helperTextAtom.reportRead();
+    return super.helperText;
+  }
+
+  @override
+  set helperText(String? value) {
+    _$helperTextAtom.reportWrite(value, super.helperText, () {
+      super.helperText = value;
+    });
+  }
+
   late final _$loadArticlesAsyncAction =
       AsyncAction('_HomeViewModelBase.loadArticles', context: context);
 
@@ -53,7 +69,8 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   String toString() {
     return '''
 articles: ${articles},
-isLoading: ${isLoading}
+isLoading: ${isLoading},
+helperText: ${helperText}
     ''';
   }
 }

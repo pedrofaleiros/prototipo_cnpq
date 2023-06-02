@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/home_viewmodel.dart';
-import 'package:provider/provider.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/favorites_page.dart';
 
 class MyActionButton extends StatelessWidget {
   const MyActionButton({super.key});
@@ -8,7 +7,9 @@ class MyActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).pushNamed(FavoritesPage.routeName);
+      },
       // onPressed: () {
       //   final focusNode = context.read<HomeViewModel>().focusNode;
 
@@ -20,7 +21,7 @@ class MyActionButton extends StatelessWidget {
       //     FocusScope.of(context).requestFocus(focusNode);
       //   }
       // },
-      child: const Icon(Icons.search),
+      child: const Icon(Icons.favorite),
     );
   }
 }
