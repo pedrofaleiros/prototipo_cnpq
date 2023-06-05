@@ -32,6 +32,10 @@ class RowsDropdownButton extends StatelessWidget {
                 value: 50,
                 child: DropdownContent(text: '50'),
               ),
+              DropdownMenuItem(
+                value: 100,
+                child: DropdownContent(text: '100'),
+              ),
             ],
             onChanged: (int? num) {
               context.read<HomeViewModel>().filter.setRows(num);

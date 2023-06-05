@@ -37,12 +37,7 @@ class _ArticleListItemState extends State<ArticleListItem> {
             child: Row(
               children: [
                 _expand
-                    ? Text(
-                        'Ver menos',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                      )
+                    ? Container()
                     : Text(
                         'Ver mais',
                         style: TextStyle(
@@ -68,28 +63,34 @@ class _ArticleListItemState extends State<ArticleListItem> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSize(
-      curve: Curves.easeIn,
-      duration: const Duration(milliseconds: 300),
-      child: Card(
-        elevation: 3,
-        margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
+    return GestureDetector(
+      onDoubleTap: () {
+        setState(() {
+          _expand = !_expand;
+        });
+      },
+      
+      child: AnimatedSize(
+        curve: Curves.linear,
+        duration: const Duration(milliseconds: 300),
+        child: Container(
+          // color: Color(0xfff5f5f7),
+          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
                 title: _title,
                 trailing: FavoriteButton(article: widget.article),
                 subtitle: Text('${widget.article.anoProducao}'),
               ),
-            ),
-            _expand == true
-                ? ArticleMoreDetail(article: widget.article)
-                : Container(),
-            _expandButton,
-          ],
+              _expand == true
+                  ? ArticleMoreDetail(article: widget.article)
+                  : Container(),
+              _expandButton,
+              const Divider(),
+            ],
+          ),
         ),
       ),
     );

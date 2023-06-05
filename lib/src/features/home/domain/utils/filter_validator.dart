@@ -66,7 +66,7 @@ class FilterValidator {
       return 10;
     }
 
-    if (rows < 0 || rows > 50) {
+    if (rows < 0 || rows > 100) {
       return 10;
     }
 

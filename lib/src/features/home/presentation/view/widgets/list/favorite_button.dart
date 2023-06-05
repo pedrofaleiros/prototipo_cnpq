@@ -20,8 +20,8 @@ class FavoriteButton extends StatelessWidget {
     return Observer(
       builder: (_) => IconButton(
         icon: controller.findById(article.id)
-            ? const Icon(Icons.favorite)
-            : const Icon(Icons.favorite_border),
+            ? const Icon(Icons.bookmark)
+            : const Icon(Icons.bookmark_border),
         color: Theme.of(context).colorScheme.primary,
         onPressed: () {
           controller.changeFavorite(article);

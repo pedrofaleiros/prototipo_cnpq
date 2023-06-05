@@ -15,22 +15,25 @@ class SearchTextField extends StatelessWidget {
     return MediaQuery.of(context).size.height < 180
         ? Container()
         : Observer(
-            builder: (_) => TextField(
-              onEditingComplete: () async {
-                await context.read<HomeViewModel>().loadArticles().then(
-                      (value) =>
-                          kIsWeb ? null : FocusScope.of(context).unfocus(),
-                    );
-              },
-              controller: context.read<HomeViewModel>().textController,
-              decoration: InputDecoration(
-                constraints: const BoxConstraints(
-                  maxWidth: 400,
+            builder: (_) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+              child: TextField(
+                onEditingComplete: () async {
+                  await context.read<HomeViewModel>().loadArticles().then(
+                        (value) =>
+                            kIsWeb ? null : FocusScope.of(context).unfocus(),
+                      );
+                },
+                controller: context.read<HomeViewModel>().textController,
+                decoration: InputDecoration(
+                  constraints: const BoxConstraints(
+                    maxWidth: 400,
+                  ),
+                  border: const OutlineInputBorder(),
+                  labelText: 'Pesquise por artigos',
+                  helperText: context.read<HomeViewModel>().helperText,
+                  suffixIcon: const SearchIconButton(),
                 ),
-                border: const OutlineInputBorder(),
-                labelText: 'Pesquise por artigos',
-                helperText: context.read<HomeViewModel>().helperText,
-                suffixIcon: const SearchIconButton(),
               ),
             ),
           );

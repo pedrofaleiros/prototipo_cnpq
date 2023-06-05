@@ -12,14 +12,14 @@ class FiltersDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Filtros'),
+      title: const Text('Configurações de busca'),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop();
           },
           child: const Text(
-            'Voltar',
+            'Ok',
             style: TextStyle(fontWeight: FontWeight.w700),
           ),
         ),

@@ -32,7 +32,8 @@ class HomePage extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () async => await _showDialog(context),
-            icon: const Icon(Icons.tune),
+            // icon: const Icon(Icons.tune),
+            icon: const Icon(Icons.settings),
           ),
           IconButton(
             onPressed: () =>
@@ -46,7 +47,7 @@ class HomePage extends StatelessWidget {
           constraints: const BoxConstraints(
             maxWidth: 700,
           ),
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: const [
@@ -66,8 +67,11 @@ class HomeDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.height < 180
+    return MediaQuery.of(context).size.height < 200
         ? Container()
-        : Divider(thickness: 1);
+        : const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            child: Divider(thickness: 1),
+          );
   }
 }

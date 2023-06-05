@@ -16,7 +16,7 @@ class ArticleListView extends StatelessWidget {
       MediaQuery.of(context).size.height > 250
           ? Center(
               child: SizedBox(
-                height: 100,
+                height: 80,
                 child: Image.asset(
                   'assets/imgs/logo_cnpq_completo.png',
                 ),
@@ -30,7 +30,7 @@ class ArticleListView extends StatelessWidget {
             article: article,
           ),
           Container(
-            height: 100,
+            height: 80,
             padding: const EdgeInsets.all(16.0),
             child: Image.asset('assets/imgs/logo_cnpq_completo.png'),
           ),
