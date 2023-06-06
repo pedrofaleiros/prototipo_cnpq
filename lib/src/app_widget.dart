@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/detail_article_page.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/favorites_page.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/saved_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/home_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/favorite_viewmodel.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/home_viewmodel.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
 
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,9 @@ class AppWidget extends StatelessWidget {
         Provider(
           create: (_) => FavoriteViewModel(),
         ),
+        Provider(
+          create: (_) => SavedViewModel(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -34,6 +38,7 @@ class AppWidget extends StatelessWidget {
             secondary: const Color(0xff168821),
             secondaryContainer: const Color(0xffe3f5e1),
             error: const Color(0xffb00020),
+            errorContainer: const Color(0xfffde0db),
             background: const Color(0xffffffff),
             onBackground: const Color(0xff000000),
           ),
@@ -41,7 +46,7 @@ class AppWidget extends StatelessWidget {
         routes: {
           HomePage.routeName: (_) => const HomePage(),
           DetailArticlePage.routeName: (_) => const DetailArticlePage(),
-          FavoritesPage.routeName: (_) => const FavoritesPage(),
+          SavedPage.routeName: (_) => const SavedPage(),
         },
       ),
     );

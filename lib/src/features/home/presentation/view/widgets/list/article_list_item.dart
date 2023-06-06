@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:prototipo_cnpq/src/features/home/domain/model/article_model.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/favorite_viewmodel.dart';
-import 'package:provider/provider.dart';
 
 import 'article_more_detail.dart';
 import 'favorite_button.dart';
 
 class ArticleListItem extends StatefulWidget {
-  const ArticleListItem({super.key, required this.article});
+  const ArticleListItem({
+    super.key,
+    required this.article,
+    this.isFav = false,
+  });
 
   final ArticleModel article;
+  final bool isFav;
 
   @override
   State<ArticleListItem> createState() => _ArticleListItemState();
@@ -69,7 +71,6 @@ class _ArticleListItemState extends State<ArticleListItem> {
           _expand = !_expand;
         });
       },
-      
       child: AnimatedSize(
         curve: Curves.linear,
         duration: const Duration(milliseconds: 300),
@@ -81,7 +82,9 @@ class _ArticleListItemState extends State<ArticleListItem> {
             children: [
               ListTile(
                 title: _title,
-                trailing: FavoriteButton(article: widget.article),
+                trailing: widget.isFav
+                    ? null
+                    : FavoriteButton(article: widget.article),
                 subtitle: Text('${widget.article.anoProducao}'),
               ),
               _expand == true

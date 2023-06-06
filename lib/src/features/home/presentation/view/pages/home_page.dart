@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/favorites_page.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/saved_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/list/article_list_view.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/my_action_button.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/search/search_text_field.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/filter/filters_dialog.dart';
-import '../widgets/filter/rows_dropdown_button.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -36,8 +36,10 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.settings),
           ),
           IconButton(
-            onPressed: () =>
-                Navigator.of(context).pushNamed(FavoritesPage.routeName),
+            onPressed: () {
+              context.read<SavedViewModel>().clearData();
+              Navigator.of(context).pushNamed(SavedPage.routeName);
+            },
             icon: const Icon(Icons.favorite),
           ),
         ],
@@ -67,7 +69,7 @@ class HomeDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MediaQuery.of(context).size.height < 200
+    return MediaQuery.of(context).size.height < 0
         ? Container()
         : const Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
