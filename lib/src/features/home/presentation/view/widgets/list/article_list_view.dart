@@ -42,7 +42,7 @@ class ArticleListView extends StatelessWidget {
     final controller = Provider.of<HomeViewModel>(context);
 
     return Observer(
-      builder: (_) => Expanded(
+      builder: (_) => Flexible(
         child: controller.isLoading
             ? _loadingIndicator
             : controller.articles.isEmpty

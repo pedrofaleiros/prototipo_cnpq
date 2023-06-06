@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-part 'filter_viewmodel.g.dart';
+part 'generated/filter_viewmodel.g.dart';
 
 class FilterViewModel = _FilterViewModelBase with _$FilterViewModel;
 

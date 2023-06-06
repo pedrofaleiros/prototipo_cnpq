@@ -24,15 +24,17 @@ class FiltersDialog extends StatelessWidget {
           ),
         ),
       ],
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          FieldRadioButtons(),
-          SizedBox(height: 10),
-          DateFilters(),
-          SizedBox(height: 10),
-          RowsDropdownButton(),
-        ],
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            FieldRadioButtons(),
+            SizedBox(height: 10),
+            DateFilters(),
+            SizedBox(height: 10),
+            RowsDropdownButton(),
+          ],
+        ),
       ),
     );
   }

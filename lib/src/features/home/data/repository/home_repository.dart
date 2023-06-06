@@ -32,7 +32,7 @@ class HomeRepositoryDio implements IHomeRepository {
       return articles;
     } catch (e) {
       print('erro: ${e.toString()}');
-      return null;
+      return mockData;
     }
   }
 }
@@ -48,6 +48,12 @@ Dio getDio() {
 }
 
 List<ArticleModel> mockData = [
+  ArticleModel(
+      id: '10000',
+      titulo: '!!!Dados Ficticios!!!',
+      tituloEn: 'This is mockdata',
+      anoProducao: 2021,
+      url: 'https://www.google.com'),
   ArticleModel(
       id: '10001',
       titulo: 'Inteligência Artificial na Área Médica: O Futuro da Saúde',

@@ -4,7 +4,7 @@ import 'package:prototipo_cnpq/src/features/home/domain/model/article_model.dart
 import 'package:prototipo_cnpq/src/features/home/domain/model/filter_model.dart';
 import 'package:prototipo_cnpq/src/features/home/domain/usecase/home_usecase.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/filter_viewmodel.dart';
-part 'home_viewmodel.g.dart';
+part 'generated/home_viewmodel.g.dart';
 
 class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
 

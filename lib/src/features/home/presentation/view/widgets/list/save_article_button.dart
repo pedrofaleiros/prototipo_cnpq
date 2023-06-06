@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 
 import '../../../../domain/model/article_model.dart';
 
-class FavoriteButton extends StatelessWidget {
-  const FavoriteButton({
+class SaveArticleButton extends StatelessWidget {
+  const SaveArticleButton({
     super.key,
     required this.article,
   });
@@ -15,7 +15,6 @@ class FavoriteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Provider.of<FavoriteViewModel>(context);
     final controller = Provider.of<SavedViewModel>(context);
 
     return Observer(
@@ -23,9 +22,8 @@ class FavoriteButton extends StatelessWidget {
         icon: controller.isFav(article.id)
             ? const Icon(Icons.bookmark)
             : const Icon(Icons.bookmark_border),
-        color: Theme.of(context).colorScheme.primary,
+        color: Theme.of(context).colorScheme.onPrimaryContainer,
         onPressed: () {
-          // controller.changeFavorite(article);
           controller.handle(article);
         },
       ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prototipo_cnpq/src/features/home/domain/model/article_model.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/handle_and_show_snack_bar.dart';
+import 'package:provider/provider.dart';
 
+import '../../../viewmodel/saved_viewmodel.dart';
 import 'article_more_detail.dart';
-import 'favorite_button.dart';
+import 'save_article_button.dart';
 
 class ArticleListItem extends StatefulWidget {
   const ArticleListItem({
@@ -43,17 +46,17 @@ class _ArticleListItemState extends State<ArticleListItem> {
                     : Text(
                         'Ver mais',
                         style: TextStyle(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
                         ),
                       ),
                 _expand == true
                     ? Icon(
                         Icons.expand_less,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
                       )
                     : Icon(
                         Icons.expand_more,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer,
                       ),
               ],
             ),
@@ -65,6 +68,8 @@ class _ArticleListItemState extends State<ArticleListItem> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Provider.of<SavedViewModel>(context, listen: false);
+
     return GestureDetector(
       onDoubleTap: () {
         setState(() {
@@ -75,7 +80,6 @@ class _ArticleListItemState extends State<ArticleListItem> {
         curve: Curves.linear,
         duration: const Duration(milliseconds: 300),
         child: Container(
-          // color: Color(0xfff5f5f7),
           margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -83,8 +87,20 @@ class _ArticleListItemState extends State<ArticleListItem> {
               ListTile(
                 title: _title,
                 trailing: widget.isFav
-                    ? null
-                    : FavoriteButton(article: widget.article),
+                    ? MediaQuery.of(context).size.width > 450
+                        ? IconButton(
+                            onPressed: () => handleAndShowSnackBar(
+                              context: context,
+                              controller: controller,
+                              article: widget.article,
+                            ),
+                            icon: Icon(
+                              Icons.bookmark,
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
+                            ),
+                          )
+                        : null
+                    : SaveArticleButton(article: widget.article),
                 subtitle: Text('${widget.article.anoProducao}'),
               ),
               _expand == true

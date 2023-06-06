@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
+      body: MediaQuery.of(context).size.height < 200 ? Container(): Center(
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: 700,

@@ -12,6 +12,13 @@ class SearchTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final orientation = MediaQuery.of(context).orientation;
+
+    if (orientation == Orientation.landscape &&
+        MediaQuery.of(context).size.height < 500) {
+      return Container();
+    }
+
     return MediaQuery.of(context).size.height < 180
         ? Container()
         : Observer(
