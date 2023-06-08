@@ -10,7 +10,6 @@ class SavedLisview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Provider.of<FavoriteViewModel>(context);
     final controller = Provider.of<SavedViewModel>(context);
 
     return Observer(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:prototipo_cnpq/src/features/home/domain/model/article_model.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/handle_and_show_snack_bar.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/show_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../viewmodel/saved_viewmodel.dart';
 import 'article_more_detail.dart';
-import 'save_article_button.dart';
+import '../save_article_button.dart';
+import 'expand_button.dart';
 
 class ArticleListItem extends StatefulWidget {
   const ArticleListItem({
@@ -30,52 +31,45 @@ class _ArticleListItemState extends State<ArticleListItem> {
         ),
       );
 
-  Widget get _expandButton => Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          TextButton(
-            onPressed: () {
-              setState(() {
-                _expand = !_expand;
-              });
-            },
-            child: Row(
-              children: [
-                _expand
-                    ? Container()
-                    : Text(
-                        'Ver mais',
-                        style: TextStyle(
-                          color: Theme.of(context).colorScheme.onPrimaryContainer,
-                        ),
-                      ),
-                _expand == true
-                    ? Icon(
-                        Icons.expand_less,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      )
-                    : Icon(
-                        Icons.expand_more,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer,
-                      ),
-              ],
-            ),
+  Widget? _trailing({
+    required SavedViewModel controller,
+  }) {
+    if (widget.isFav) {
+      if (MediaQuery.of(context).size.width > 450) {
+        return IconButton(
+          onPressed: () {
+            controller.handle(widget.article);
+            showSnackBar(
+              context: context,
+              controller: controller,
+              article: widget.article,
+            );
+          },
+          icon: Icon(
+            Icons.bookmark,
+            color: Theme.of(context).colorScheme.primary,
           ),
-        ],
-      );
+        );
+      }
+    } else {
+      return SaveArticleButton(article: widget.article);
+    }
+
+    return null;
+  }
 
   bool _expand = false;
+
+  void changeExpand() => setState(() {
+        _expand = !_expand;
+      });
 
   @override
   Widget build(BuildContext context) {
     final controller = Provider.of<SavedViewModel>(context, listen: false);
 
     return GestureDetector(
-      onDoubleTap: () {
-        setState(() {
-          _expand = !_expand;
-        });
-      },
+      onDoubleTap: changeExpand,
       child: AnimatedSize(
         curve: Curves.linear,
         duration: const Duration(milliseconds: 300),
@@ -86,27 +80,16 @@ class _ArticleListItemState extends State<ArticleListItem> {
             children: [
               ListTile(
                 title: _title,
-                trailing: widget.isFav
-                    ? MediaQuery.of(context).size.width > 450
-                        ? IconButton(
-                            onPressed: () => handleAndShowSnackBar(
-                              context: context,
-                              controller: controller,
-                              article: widget.article,
-                            ),
-                            icon: Icon(
-                              Icons.bookmark,
-                              color: Theme.of(context).colorScheme.onPrimaryContainer,
-                            ),
-                          )
-                        : null
-                    : SaveArticleButton(article: widget.article),
+                trailing: _trailing(controller: controller),
                 subtitle: Text('${widget.article.anoProducao}'),
               ),
               _expand == true
                   ? ArticleMoreDetail(article: widget.article)
                   : Container(),
-              _expandButton,
+              ExpandButton(
+                action: changeExpand,
+                expand: _expand,
+              ),
               const Divider(),
             ],
           ),

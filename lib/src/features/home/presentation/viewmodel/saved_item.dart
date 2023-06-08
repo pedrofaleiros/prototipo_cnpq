@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 
 import '../../domain/model/article_model.dart';
-part 'generated/saved_item.g.dart';
+part 'saved_item.g.dart';
 
 class SavedItem = _SavedItemBase with _$SavedItem;
 

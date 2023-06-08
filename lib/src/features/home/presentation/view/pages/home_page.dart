@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/saved_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/list/article_list_view.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/search/search_text_field.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
-import 'package:provider/provider.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/search/search_widget.dart';
 
 import '../widgets/filter/filters_dialog.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static const routeName = '/';
+  static const routeName = '/home';
 
-  Future<void> _showDialog(BuildContext context) async {
+  Future<void> _showFiltersDialog(BuildContext context) async {
     return await showDialog(
       context: context,
       builder: (_) => const FiltersDialog(),
@@ -21,45 +18,88 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        foregroundColor: Theme.of(context).colorScheme.primary,
-        backgroundColor: Theme.of(context).colorScheme.background,
-        title: SizedBox(
-          height: 40,
-          child: Image.asset('assets/imgs/logo_gov.png'),
+    return WillPopScope(
+      onWillPop: () async {
+        final res = await _showExitDialog(context);
+
+        if (res == null) return false;
+
+        return res;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          foregroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: Theme.of(context).colorScheme.background,
+          title: const GovLogo(),
+          actions: [
+            IconButton(
+              onPressed: () async => await _showFiltersDialog(context),
+              icon: const Icon(Icons.settings),
+            ),
+          ],
         ),
-        actions: [
-          IconButton(
-            onPressed: () async => await _showDialog(context),
-            // icon: const Icon(Icons.tune),
-            icon: const Icon(Icons.settings),
-          ),
-          IconButton(
-            onPressed: () {
-              context.read<SavedViewModel>().clearData();
-              Navigator.of(context).pushNamed(SavedPage.routeName);
-            },
-            icon: const Icon(Icons.favorite),
-          ),
-        ],
+        body: MediaQuery.of(context).size.height < 200
+            ? Container()
+            : Center(
+                child: Container(
+                  constraints: const BoxConstraints(
+                    maxWidth: 700,
+                  ),
+                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const [
+                      SearchWidget(),
+                      HomeDivider(),
+                      ArticleListView(),
+                    ],
+                  ),
+                ),
+              ),
       ),
-      body: MediaQuery.of(context).size.height < 200 ? Container(): Center(
-        child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: 700,
-          ),
-          padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              SearchTextField(),
-              HomeDivider(),
-              ArticleListView(),
-            ],
+    );
+  }
+}
+
+Future<bool?> _showExitDialog(BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('Deseja sair do app?'),
+      actionsAlignment: MainAxisAlignment.spaceAround,
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(false);
+          },
+          child: Text(
+            'Não',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.error,
+            ),
           ),
         ),
-      ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
+          child: const Text('Sim'),
+        ),
+      ],
+    ),
+  );
+}
+
+class GovLogo extends StatelessWidget {
+  const GovLogo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 40,
+      child: Image.asset('assets/imgs/logo_gov.png'),
     );
   }
 }

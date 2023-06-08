@@ -2,7 +2,7 @@ import 'package:prototipo_cnpq/src/features/home/data/dto/filter_dto.dart';
 
 class UrlGenerator {
   static const _baseUrl =
-      'http://172.30.129.176:8983/solr/prod_cientifica_teste_novo/';
+      'http://192.168.0.129:8983/solr/prod_cientifica_teste_novo/';
 
   static String getUrl(FilterDto filter) {
     var url = '${_baseUrl}select?indent=true&q.op=OR';

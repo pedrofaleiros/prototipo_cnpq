@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../domain/model/article_model.dart';
+import '../../../domain/model/article_model.dart';
 
 class SaveArticleButton extends StatelessWidget {
   const SaveArticleButton({
@@ -22,7 +22,7 @@ class SaveArticleButton extends StatelessWidget {
         icon: controller.isFav(article.id)
             ? const Icon(Icons.bookmark)
             : const Icon(Icons.bookmark_border),
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
+        color: Theme.of(context).colorScheme.primary,
         onPressed: () {
           controller.handle(article);
         },

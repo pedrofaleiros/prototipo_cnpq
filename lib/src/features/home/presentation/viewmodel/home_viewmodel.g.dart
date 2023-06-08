@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../home_viewmodel.dart';
+part of 'home_viewmodel.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -41,19 +41,19 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
-  late final _$helperTextAtom =
-      Atom(name: '_HomeViewModelBase.helperText', context: context);
+  late final _$errorTextAtom =
+      Atom(name: '_HomeViewModelBase.errorText', context: context);
 
   @override
-  String? get helperText {
-    _$helperTextAtom.reportRead();
-    return super.helperText;
+  String? get errorText {
+    _$errorTextAtom.reportRead();
+    return super.errorText;
   }
 
   @override
-  set helperText(String? value) {
-    _$helperTextAtom.reportWrite(value, super.helperText, () {
-      super.helperText = value;
+  set errorText(String? value) {
+    _$errorTextAtom.reportWrite(value, super.errorText, () {
+      super.errorText = value;
     });
   }
 
@@ -70,7 +70,7 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     return '''
 articles: ${articles},
 isLoading: ${isLoading},
-helperText: ${helperText}
+errorText: ${errorText}
     ''';
   }
 }

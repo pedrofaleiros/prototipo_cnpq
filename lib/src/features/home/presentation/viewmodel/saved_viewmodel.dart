@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import 'package:prototipo_cnpq/src/features/home/domain/model/article_model.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_item.dart';
-part 'generated/saved_viewmodel.g.dart';
+part 'saved_viewmodel.g.dart';
 
 class SavedViewModel = _SavedViewModelBase with _$SavedViewModel;
 

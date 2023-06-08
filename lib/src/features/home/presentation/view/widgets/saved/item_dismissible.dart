@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/handle_and_show_snack_bar.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/show_snack_bar.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -24,11 +24,14 @@ class ItemDismissible extends StatelessWidget {
       direction: DismissDirection.endToStart,
       background: const DismissBackground(),
       key: Key(article.id),
-      onDismissed: (_) => handleAndShowSnackBar(
+      onDismissed: (_) {
+        controller.handle(article);
+        showSnackBar(
           context: context,
           controller: controller,
           article: article,
-        ),
+        );
+      },
       child: ArticleListItem(
         isFav: true,
         article: article,
