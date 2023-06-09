@@ -25,11 +25,6 @@ class AppWidget extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          radioTheme: const RadioThemeData(
-            fillColor: MaterialStatePropertyAll(
-              Color(0xff1351b4),
-            ),
-          ),
           textTheme: const TextTheme(
             labelLarge: TextStyle(
               fontWeight: FontWeight.w700,
@@ -37,22 +32,17 @@ class AppWidget extends StatelessWidget {
             ),
           ),
           fontFamily: 'rawline',
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            // primary: const Color(0xff071d41),
-            primary: const Color(0xff1351b4),
-            primaryContainer: const Color(0xffd4e5ff),
-            onPrimaryContainer: const Color(0xff1c57b7),
-            secondary: const Color(0xff168821),
-            secondaryContainer: const Color(0xffe3f5e1),
-            error: const Color(0xffb00020),
-            errorContainer: const Color(0xfffde0db),
-            background: const Color(0xffffffff),
-            onBackground: const Color(0xff333333),
-            onErrorContainer: const Color(0xffdf2107),
-            tertiary: const Color(0xff071d41),
-            onTertiary: const Color(0xffbfc5ce),
-            // onError: Color(0xffdf2107),
+          colorScheme: _lightTheme,
+        ),
+        darkTheme: ThemeData(
+          textTheme: const TextTheme(
+            labelLarge: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontFamily: 'rawline',
+            ),
           ),
+          fontFamily: 'rawline',
+          colorScheme: _darkTheme,
         ),
         // initialRoute: HomePage.routeName,
         routes: {
@@ -65,3 +55,93 @@ class AppWidget extends StatelessWidget {
     );
   }
 }
+
+ColorScheme get _lightTheme => ColorScheme.fromSwatch().copyWith(
+      primary: const Color(0xff1351b4),
+      primaryContainer: const Color(0xffADCDFF),
+      onPrimaryContainer: const Color(0xff071d41),
+      onPrimary: const Color(0xffffffff),
+      //
+      secondary: const Color(0xff168821),
+      secondaryContainer: const Color(0xffe3f5e1),
+      onSecondaryContainer: const Color(0xff154C21),
+      //
+      background: const Color(0xffffffff),
+      onBackground: const Color(0xff1c1c1c),
+
+      error: const Color(0xffb00020),
+      errorContainer: const Color(0xfffde0db),
+      //
+    );
+
+ColorScheme get _darkTheme => ColorScheme.fromSwatch().copyWith(
+      brightness: Brightness.dark,
+
+      onPrimary: const Color(0xffffffff),
+
+      primary: const Color(0xffADCDFF),
+      primaryContainer: const Color(0xff071d41),
+      onPrimaryContainer: const Color(0xff1351b4),
+      //
+      secondary: const Color(0xffe3f5e1),
+      secondaryContainer: const Color(0xff154C21),
+      onSecondaryContainer: const Color(0xff168821),
+      //
+      background: const Color(0xff1c1c1c),
+      onBackground: const Color(0xffffffff),
+      //
+      error: const Color(0xfffde0db),
+      errorContainer: const Color(0xffB00020),
+      //
+    );
+
+
+/*
+= = = = = = = = = = = = = LIGHT THEME = = = = = = = = = = = = =
+
+ColorScheme.fromSwatch().copyWith(
+            primary: const Color(0xff1351b4),
+            primaryContainer: const Color(0xffADCDFF),
+            onPrimaryContainer: const Color(0xff071d41),
+            onPrimary: const Color(0xffffffff),
+            //
+            secondary: const Color(0xff168821),
+            secondaryContainer: const Color(0xffe3f5e1),
+            onSecondaryContainer: const Color(0xff154C21),
+            //
+            background: const Color(0xffffffff),
+            onBackground: const Color(0xff1c1c1c),
+            //
+            error: const Color(0xffb00020),
+            onErrorContainer: const Color(0xffdf2107),
+            errorContainer: const Color(0xfffde0db),
+            //
+          )
+
+ */
+
+/* 
+= = = = = = = = = = = = = DARK THEME = = = = = = = = = = = = =
+
+ColorScheme.fromSwatch().copyWith(
+            brightness: Brightness.dark,
+
+            onSecondaryContainer: const Color(0xff1351b4),
+            secondary: const Color(0xffADCDFF),
+            secondaryContainer: const Color(0xff071d41),
+            onPrimary: const Color(0xffffffff),
+            //
+            onPrimaryContainer: const Color(0xff168821),
+            primary: const Color(0xffe3f5e1),
+            primaryContainer: const Color(0xff154C21),
+            //
+            background: const Color(0xff1c1c1c),
+            onBackground: const Color(0xffffffff),
+            //
+            error: const Color(0xffb00020),
+            onErrorContainer: const Color(0xffdf2107),
+            errorContainer: const Color(0xfffde0db),
+            //
+          )
+
+ */

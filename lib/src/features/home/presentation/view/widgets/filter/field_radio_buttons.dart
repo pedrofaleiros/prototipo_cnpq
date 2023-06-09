@@ -13,6 +13,8 @@ class FieldRadioButtons extends StatelessWidget {
         children: [
           const Text('Português'),
           Radio<bool>(
+            fillColor:
+                MaterialStatePropertyAll(Theme.of(context).colorScheme.primary),
             value: true,
             groupValue: context.read<HomeViewModel>().filter.isPortuguese,
             onChanged: (value) {
@@ -23,6 +25,8 @@ class FieldRadioButtons extends StatelessWidget {
           Expanded(child: Container()),
           const Text('Inglês'),
           Radio<bool>(
+            fillColor:
+                MaterialStatePropertyAll(Theme.of(context).colorScheme.primary),
             value: false,
             groupValue: context.read<HomeViewModel>().filter.isPortuguese,
             onChanged: (value) {

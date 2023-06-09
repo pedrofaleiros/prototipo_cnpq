@@ -12,6 +12,7 @@ class FiltersDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Theme.of(context).colorScheme.background,
       title: const Text('Configurações de busca'),
       actions: [
         TextButton(

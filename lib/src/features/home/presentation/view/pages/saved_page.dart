@@ -20,10 +20,15 @@ class SavedPage extends StatelessWidget {
         return false;
       },
       child: Scaffold(
-        // bottomNavigationBar: HomeBottomNavigationBar(context, 1),
+        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.tertiary,
-          title: const Text('Favoritos'),
+          backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+          title: Text(
+            'Favoritos',
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onPrimary,
+            ),
+          ),
         ),
         body: Center(
           child: Container(

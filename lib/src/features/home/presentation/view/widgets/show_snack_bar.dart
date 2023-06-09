@@ -54,5 +54,5 @@ SnackBarAction _cancelButton({
       onPressed: () {
         controller.handle(article);
       },
-      textColor: Theme.of(context).colorScheme.onPrimaryContainer,
+      textColor: Theme.of(context).colorScheme.primary,
     );

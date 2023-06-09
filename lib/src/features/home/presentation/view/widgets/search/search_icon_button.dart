@@ -17,7 +17,7 @@ class SearchIconButton extends StatelessWidget {
       },
       icon: const Icon(
         Icons.search,
-        size: 32,
+        // size: 32,
       ),
     );
   }

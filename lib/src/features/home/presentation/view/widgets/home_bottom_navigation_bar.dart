@@ -8,10 +8,10 @@ BottomNavigationBar HomeBottomNavigationBar({
   required PageController controller,
 }) {
   return BottomNavigationBar(
-    backgroundColor: Theme.of(context).colorScheme.tertiary,
-    selectedItemColor: Theme.of(context).colorScheme.background,
+    backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+    selectedItemColor: Theme.of(context).colorScheme.onPrimary,
     unselectedItemColor:
-        Theme.of(context).colorScheme.onTertiary.withOpacity(0.8),
+        Theme.of(context).colorScheme.onPrimary.withOpacity(0.7),
     currentIndex: index,
     items: const <BottomNavigationBarItem>[
       BottomNavigationBarItem(
