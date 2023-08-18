@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class FiltersModalBottomSheet extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: const [
         TopWidget(),
-        SizedBox(height: 20),
+        if(!kIsWeb) SizedBox(height: 20),
         Text(
           'Filtros',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
@@ -44,31 +45,26 @@ class BottomWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Expanded(
-            child: ElevatedButton(
-              onPressed: () async {
-                Navigator.pop(context);
-                FocusScope.of(context).unfocus();
-                await context.read<HomeViewModel>().loadArticles();
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? Theme.of(context).colorScheme.onPrimaryContainer
-                      : Theme.of(context).colorScheme.primary,
-                ),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text('Aplicar'),
-              ),
+      child: Container(
+        width: double.infinity,
+        child: ElevatedButton(
+          onPressed: () async {
+            Navigator.pop(context);
+            FocusScope.of(context).unfocus();
+            await context.read<HomeViewModel>().loadArticles();
+          },
+          style: ButtonStyle(
+            backgroundColor: MaterialStatePropertyAll(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Theme.of(context).colorScheme.onPrimaryContainer
+                  : Theme.of(context).colorScheme.primary,
             ),
           ),
-        ],
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 12.0),
+            child: Text('Aplicar'),
+          ),
+        ),
       ),
     );
   }

@@ -16,45 +16,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
-  bool showFAB = true;
-
-  late final _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 400),
-  )..forward();
-
-  late final _animation = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.fastOutSlowIn,
-  );
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
-    _animation.dispose();
-  }
-
-  bool showOrHideFAB(scroll) {
-    if (scroll.direction == ScrollDirection.reverse && showFAB) {
-      _controller.reverse();
-      showFAB = false;
-    } else if (scroll.direction == ScrollDirection.forward && !showFAB) {
-      _controller.forward();
-      showFAB = true;
-    }
-
-    return true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return RemoveOverscrollIndicator(
       child: Scaffold(
-        floatingActionButton: ScaleTransition(
-          scale: _animation,
-          child: const HomeActionButton(),
-        ),
+        floatingActionButton: MediaQuery.of(context).size.height > 580
+            ? const HomeActionButton()
+            : null,
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: MediaQuery.of(context).size.height < 200
