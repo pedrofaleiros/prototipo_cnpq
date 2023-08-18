@@ -3,7 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
 import 'package:provider/provider.dart';
 
-import '../../../domain/model/article_model.dart';
+import '../../../../domain/model/article_model.dart';
 
 class SaveArticleButton extends StatelessWidget {
   const SaveArticleButton({

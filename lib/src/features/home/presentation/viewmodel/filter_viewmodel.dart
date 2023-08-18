@@ -26,6 +26,16 @@ abstract class _FilterViewModelBase with Store {
   }
 
   @action
+  void resetInitialDate() {
+    initialDate = null;
+  }
+
+  @action
+  void resetFinallDate() {
+    finalDate = null;
+  }
+
+  @action
   void setInitialDate(int? value) {
     if (finalDate != null && value != null) {
       if (finalDate! <= value) {

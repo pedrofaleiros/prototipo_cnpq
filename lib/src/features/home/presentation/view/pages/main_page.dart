@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/home_bottom_navigation_bar.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/material_components/home_bottom_navigation_bar.dart';
 
 import 'home_page.dart';
 import 'saved_page.dart';

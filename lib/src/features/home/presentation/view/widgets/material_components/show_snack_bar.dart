@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/model/article_model.dart';
-import '../../viewmodel/saved_viewmodel.dart';
+import '../../../../domain/model/article_model.dart';
+import '../../../viewmodel/saved_viewmodel.dart';
 
 void showSnackBar({
   required BuildContext context,

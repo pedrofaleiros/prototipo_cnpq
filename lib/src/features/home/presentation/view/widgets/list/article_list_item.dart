@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:prototipo_cnpq/src/features/home/domain/model/article_model.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/show_snack_bar.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/material_components/show_snack_bar.dart';
 import 'package:provider/provider.dart';
 
 import '../../../viewmodel/saved_viewmodel.dart';
 import 'article_more_detail.dart';
-import '../save_article_button.dart';
+import '../saved/save_article_button.dart';
 import 'expand_button.dart';
 
 class ArticleListItem extends StatefulWidget {

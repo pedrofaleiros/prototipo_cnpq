@@ -1,62 +1,113 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/list/article_list_view.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/material_components/home_action_button.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/search/search_widget.dart';
 
-import '../widgets/filter/filters_dialog.dart';
+import '../widgets/remove_overscroll_indicator.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   static const routeName = '/home';
 
-  Future<void> _showFiltersDialog(BuildContext context) async {
-    return await showDialog(
-      context: context,
-      builder: (_) => const FiltersDialog(),
-    );
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
+  bool showFAB = true;
+
+  late final _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 400),
+  )..forward();
+
+  late final _animation = CurvedAnimation(
+    parent: _controller,
+    curve: Curves.fastOutSlowIn,
+  );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+    _animation.dispose();
+  }
+
+  bool showOrHideFAB(scroll) {
+    if (scroll.direction == ScrollDirection.reverse && showFAB) {
+      _controller.reverse();
+      showFAB = false;
+    } else if (scroll.direction == ScrollDirection.forward && !showFAB) {
+      _controller.forward();
+      showFAB = true;
+    }
+
+    return true;
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final res = await _showExitDialog(context);
-
-        if (res == null) return false;
-
-        return res;
-      },
+    return RemoveOverscrollIndicator(
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
-          foregroundColor: Theme.of(context).colorScheme.primary,
-          backgroundColor: Theme.of(context).colorScheme.background,
-          title: const GovLogo(),
-          actions: [
-            IconButton(
-              onPressed: () async => await _showFiltersDialog(context),
-              icon: const Icon(Icons.settings),
-            ),
-          ],
+        floatingActionButton: ScaleTransition(
+          scale: _animation,
+          child: const HomeActionButton(),
         ),
-        body: MediaQuery.of(context).size.height < 200
-            ? Container()
-            : Center(
-                child: Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: 700,
-                  ),
-                  padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: const [
-                      SearchWidget(),
-                      HomeDivider(),
-                      ArticleListView(),
-                    ],
+        backgroundColor: Theme.of(context).colorScheme.background,
+        body: SafeArea(
+          child: MediaQuery.of(context).size.height < 200
+              ? Container()
+              : Center(
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      maxWidth: 700,
+                    ),
+                    padding: const EdgeInsets.fromLTRB(0, 16, 0, 0),
+                    child: const Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SearchWidget(),
+                        HomeDivider(),
+                        ArticleListView(),
+                      ],
+                    ),
                   ),
                 ),
+        ),
+      ),
+    );
+  }
+}
+
+class TermsWidget extends StatelessWidget {
+  const TermsWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 36,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 15,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: OutlinedButton(
+              style: ButtonStyle(
+                shape: MaterialStatePropertyAll(
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18)),
+                ),
               ),
+              onPressed: () {},
+              child: Text('data $index'),
+            ),
+          );
+        },
       ),
     );
   }
@@ -91,20 +142,6 @@ Future<bool?> _showExitDialog(BuildContext context) {
   );
 }
 
-class GovLogo extends StatelessWidget {
-  const GovLogo({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: Image.asset('assets/imgs/logo_gov.png'),
-    );
-  }
-}
-
 class HomeDivider extends StatelessWidget {
   const HomeDivider({super.key});
 
@@ -118,3 +155,12 @@ class HomeDivider extends StatelessWidget {
           );
   }
 }
+
+/* 
+NestedScrollView(
+              floatHeaderSlivers: true,
+              headerSliverBuilder: (context, innerBoxIsScrolled) => const [
+                // HomeAppBar(),
+              ],
+
+ */

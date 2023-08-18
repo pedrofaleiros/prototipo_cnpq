@@ -13,11 +13,15 @@ class SavedLisview extends StatelessWidget {
     final controller = Provider.of<SavedViewModel>(context);
 
     return Observer(
-      builder: (_) => ListView.builder(
-        itemCount: controller.favorites.length,
-        itemBuilder: (context, index) =>
-            ItemDismissible(article: controller.favorites[index]),
-      ),
+      builder: (_) => controller.favorites.isEmpty
+          ? const Center(
+              child: Text('Sem arquivos salvos ainda.'),
+            )
+          : ListView.builder(
+              itemCount: controller.favorites.length,
+              itemBuilder: (context, index) =>
+                  ItemDismissible(article: controller.favorites[index]),
+            ),
     );
   }
 }

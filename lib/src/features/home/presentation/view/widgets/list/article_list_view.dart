@@ -19,6 +19,7 @@ class ArticleListView extends StatelessWidget {
                 height: 80,
                 child: Image.asset(
                   'assets/imgs/logo_cnpq_completo.png',
+                  // color: Theme.of(context).colorScheme.primary,
                 ),
               ),
             )

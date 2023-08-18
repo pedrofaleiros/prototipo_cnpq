@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/detail_article_page.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/main_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/saved_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/home_page.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/pages/tabs_page.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/home_viewmodel.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
 
@@ -34,22 +34,24 @@ class AppWidget extends StatelessWidget {
           fontFamily: 'rawline',
           colorScheme: _lightTheme,
         ),
-        darkTheme: ThemeData(
-          textTheme: const TextTheme(
-            labelLarge: TextStyle(
-              fontWeight: FontWeight.w700,
-              fontFamily: 'rawline',
-            ),
-          ),
-          fontFamily: 'rawline',
-          colorScheme: _darkTheme,
-        ),
-        // initialRoute: HomePage.routeName,
+        // DESCOMENTE PARA ATIVAR O MODO ESCURO AUTOMATICO
+        // darkTheme: ThemeData(
+        //   textTheme: const TextTheme(
+        //     labelLarge: TextStyle(
+        //       fontWeight: FontWeight.w700,
+        //       fontFamily: 'rawline',
+        //     ),
+        //   ),
+        //   fontFamily: 'rawline',
+        //   colorScheme: _darkTheme,
+        // ),
+        initialRoute: TabsPage.routeName,
         routes: {
-          MainPage.routeName: (_) => MainPage(),
+          // MainPage.routeName: (_) => MainPage(),
           HomePage.routeName: (_) => const HomePage(),
           DetailArticlePage.routeName: (_) => const DetailArticlePage(),
           SavedPage.routeName: (_) => const SavedPage(),
+          TabsPage.routeName: (_) => const TabsPage(),
         },
       ),
     );
@@ -83,16 +85,21 @@ ColorScheme get _darkTheme => ColorScheme.fromSwatch().copyWith(
       primaryContainer: const Color(0xff071d41),
       onPrimaryContainer: const Color(0xff1351b4),
       //
-      secondary: const Color(0xffe3f5e1),
-      secondaryContainer: const Color(0xff154C21),
-      onSecondaryContainer: const Color(0xff168821),
+      secondary: const Color(0xffADCDFF),
+      secondaryContainer: const Color(0xff071d41),
+      onSecondaryContainer: const Color(0xff1351b4),
       //
-      background: const Color(0xff1c1c1c),
+      // secondary: const Color(0xffe3f5e1),
+      // secondaryContainer: const Color(0xff154C21),
+      // onSecondaryContainer: const Color(0xff168821),
+      //
+      background: const Color(0xff000000),
       onBackground: const Color(0xffffffff),
       //
       error: const Color(0xfffde0db),
       errorContainer: const Color(0xffB00020),
       //
+      tertiary: const Color(0xff168821),
     );
 
 

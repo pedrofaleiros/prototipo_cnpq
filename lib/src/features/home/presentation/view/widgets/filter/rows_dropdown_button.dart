@@ -11,38 +11,46 @@ class RowsDropdownButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const Text('N° de resultados:'),
-        Expanded(child: Container()),
-        Observer(
-          builder: (_) => DropdownButton<int>(
-            value: context.read<HomeViewModel>().filter.rows,
-            items: const [
-              DropdownMenuItem(
-                value: 10,
-                child: DropdownContent(text: '10'),
-              ),
-              DropdownMenuItem(
-                value: 25,
-                child: DropdownContent(text: '25'),
-              ),
-              DropdownMenuItem(
-                value: 50,
-                child: DropdownContent(text: '50'),
-              ),
-              DropdownMenuItem(
-                value: 100,
-                child: DropdownContent(text: '100'),
-              ),
-            ],
-            onChanged: (int? num) {
-              context.read<HomeViewModel>().filter.setRows(num);
-            },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          const Text(
+            'N° de resultados:',
+            style: TextStyle(
+              fontSize: 16,
+            ),
           ),
-        ),
-      ],
+          Expanded(child: Container()),
+          Observer(
+            builder: (_) => DropdownButton<int>(
+              value: context.read<HomeViewModel>().filter.rows,
+              items: const [
+                DropdownMenuItem(
+                  value: 10,
+                  child: DropdownContent(text: '10'),
+                ),
+                DropdownMenuItem(
+                  value: 25,
+                  child: DropdownContent(text: '25'),
+                ),
+                DropdownMenuItem(
+                  value: 50,
+                  child: DropdownContent(text: '50'),
+                ),
+                DropdownMenuItem(
+                  value: 100,
+                  child: DropdownContent(text: '100'),
+                ),
+              ],
+              onChanged: (int? num) {
+                context.read<HomeViewModel>().filter.setRows(num);
+              },
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

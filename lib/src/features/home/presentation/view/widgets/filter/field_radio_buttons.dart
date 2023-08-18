@@ -9,32 +9,56 @@ class FieldRadioButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => Row(
-        children: [
-          const Text('Português'),
-          Radio<bool>(
-            fillColor:
-                MaterialStatePropertyAll(Theme.of(context).colorScheme.primary),
-            value: true,
-            groupValue: context.read<HomeViewModel>().filter.isPortuguese,
-            onChanged: (value) {
-              if (value == null) return;
-              context.read<HomeViewModel>().filter.changeFieldLang(value);
-            },
-          ),
-          Expanded(child: Container()),
-          const Text('Inglês'),
-          Radio<bool>(
-            fillColor:
-                MaterialStatePropertyAll(Theme.of(context).colorScheme.primary),
-            value: false,
-            groupValue: context.read<HomeViewModel>().filter.isPortuguese,
-            onChanged: (value) {
-              if (value == null) return;
-              context.read<HomeViewModel>().filter.changeFieldLang(value);
-            },
-          ),
-        ],
+      builder: (_) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Expanded(
+              child: Text(
+                'Buscar em',
+                style: TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+            ),
+            Text(
+              'Português',
+              style: TextStyle(
+                color:
+                    Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
+            Radio<bool>(
+              fillColor: MaterialStatePropertyAll(
+                  Theme.of(context).colorScheme.primary),
+              value: true,
+              groupValue: context.read<HomeViewModel>().filter.isPortuguese,
+              onChanged: (value) {
+                if (value == null) return;
+                context.read<HomeViewModel>().filter.changeFieldLang(value);
+              },
+            ),
+            const SizedBox(width: 20),
+            Text(
+              'Inglês',
+              style: TextStyle(
+                color:
+                    Theme.of(context).colorScheme.onBackground.withOpacity(0.5),
+              ),
+            ),
+            Radio<bool>(
+              fillColor: MaterialStatePropertyAll(
+                  Theme.of(context).colorScheme.primary),
+              value: false,
+              groupValue: context.read<HomeViewModel>().filter.isPortuguese,
+              onChanged: (value) {
+                if (value == null) return;
+                context.read<HomeViewModel>().filter.changeFieldLang(value);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

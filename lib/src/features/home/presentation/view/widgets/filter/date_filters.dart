@@ -24,32 +24,72 @@ class DateFilters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Observer(
-      builder: (_) => Row(
-        children: [
-          const Text('Data:'),
-          const SizedBox(width: 10),
-          DropdownButton<int>(
-            menuMaxHeight: 250,
-            hint: const Text('inicio'),
-            value: context.read<HomeViewModel>().filter.initialDate,
-            items: _getItems(),
-            onChanged: (int? num) {
-              context.read<HomeViewModel>().filter.setInitialDate(num);
-            },
-          ),
-          Expanded(child: Container()),
-          const Text('-'),
-          Expanded(child: Container()),
-          DropdownButton<int>(
-            menuMaxHeight: 250,
-            hint: const Text('fim'),
-            value: context.read<HomeViewModel>().filter.finalDate,
-            items: _getItems(),
-            onChanged: (int? num) {
-              context.read<HomeViewModel>().filter.setFinalDate(num);
-            },
-          ),
-        ],
+      builder: (_) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                const Text(
+                  'Data inicial',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                Expanded(child: Container()),
+                DropdownButton<int>(
+                  menuMaxHeight: 250,
+                  hint: const Text('inicio'),
+                  value: context.read<HomeViewModel>().filter.initialDate,
+                  items: _getItems(),
+                  onChanged: (int? num) {
+                    context.read<HomeViewModel>().filter.setInitialDate(num);
+                  },
+                ),
+                IconButton(
+                  color: Theme.of(context).colorScheme.error,
+                  onPressed: () {
+                    context.read<HomeViewModel>().filter.resetInitialDate();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    size: 16,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const Text(
+                  'Data final',
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                Expanded(child: Container()),
+                DropdownButton<int>(
+                  menuMaxHeight: 250,
+                  hint: const Text('fim'),
+                  value: context.read<HomeViewModel>().filter.finalDate,
+                  items: _getItems(),
+                  onChanged: (int? num) {
+                    context.read<HomeViewModel>().filter.setFinalDate(num);
+                  },
+                ),
+                IconButton(
+                  color: Theme.of(context).colorScheme.error,
+                  onPressed: () {
+                    context.read<HomeViewModel>().filter.resetFinallDate();
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    size: 16,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

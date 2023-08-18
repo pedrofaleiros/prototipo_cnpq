@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/show_snack_bar.dart';
+import 'package:prototipo_cnpq/src/features/home/presentation/view/widgets/material_components/show_snack_bar.dart';
 import 'package:prototipo_cnpq/src/features/home/presentation/viewmodel/saved_viewmodel.dart';
 import 'package:provider/provider.dart';
 

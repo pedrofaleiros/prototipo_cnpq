@@ -22,6 +22,12 @@ class SearchTextField extends StatelessWidget {
         },
         controller: context.read<HomeViewModel>().textController,
         decoration: InputDecoration(
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(
+              color:
+                  Theme.of(context).colorScheme.onBackground.withOpacity(0.25),
+            ),
+          ),
           constraints: const BoxConstraints(
             maxWidth: 400,
           ),

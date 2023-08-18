@@ -88,6 +88,28 @@ mixin _$FilterViewModel on _FilterViewModelBase, Store {
   }
 
   @override
+  void resetInitialDate() {
+    final _$actionInfo = _$_FilterViewModelBaseActionController.startAction(
+        name: '_FilterViewModelBase.resetInitialDate');
+    try {
+      return super.resetInitialDate();
+    } finally {
+      _$_FilterViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void resetFinallDate() {
+    final _$actionInfo = _$_FilterViewModelBaseActionController.startAction(
+        name: '_FilterViewModelBase.resetFinallDate');
+    try {
+      return super.resetFinallDate();
+    } finally {
+      _$_FilterViewModelBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setInitialDate(int? value) {
     final _$actionInfo = _$_FilterViewModelBaseActionController.startAction(
         name: '_FilterViewModelBase.setInitialDate');
