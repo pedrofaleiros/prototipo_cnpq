@@ -35,16 +35,16 @@ class AppWidget extends StatelessWidget {
           colorScheme: _lightTheme,
         ),
         // DESCOMENTE PARA ATIVAR O MODO ESCURO AUTOMATICO
-        // darkTheme: ThemeData(
-        //   textTheme: const TextTheme(
-        //     labelLarge: TextStyle(
-        //       fontWeight: FontWeight.w700,
-        //       fontFamily: 'rawline',
-        //     ),
-        //   ),
-        //   fontFamily: 'rawline',
-        //   colorScheme: _darkTheme,
-        // ),
+        darkTheme: ThemeData(
+          textTheme: const TextTheme(
+            labelLarge: TextStyle(
+              fontWeight: FontWeight.w700,
+              fontFamily: 'rawline',
+            ),
+          ),
+          fontFamily: 'rawline',
+          colorScheme: _darkTheme,
+        ),
         initialRoute: TabsPage.routeName,
         routes: {
           // MainPage.routeName: (_) => MainPage(),
