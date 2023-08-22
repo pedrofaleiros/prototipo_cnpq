@@ -20,6 +20,9 @@ class SearchTextField extends StatelessWidget {
                 (value) => kIsWeb ? null : FocusScope.of(context).unfocus(),
               );
         },
+        onChanged: (value) async {
+          await context.read<HomeViewModel>().loadArticles();
+        },
         controller: context.read<HomeViewModel>().textController,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(

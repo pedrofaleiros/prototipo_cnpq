@@ -57,6 +57,54 @@ class _SavedPageState extends State<SavedPage> {
     ));
   }
 
+  void _downloadCsv(BuildContext context) async {
+    // if(Platform.isAndroid){
+    //   print('Download nao disponivel no android');
+    //   return;
+    // }
+
+    final response = context.read<SavedViewModel>().favorites;
+    if (response.isEmpty) return;
+
+    setIsLoading(true);
+
+    final csvData = getData(response);
+
+    try {
+      var dir;
+
+      if (Platform.isAndroid || Platform.isIOS) {
+        // dir = await getExternalStorageDirectory();
+        // print(dir.path.toString());
+        print('funcionalidade nao disponivel nesta plataforma');
+      } else if(Platform.isWindows){
+        dir = await getDownloadsDirectory();
+      }
+
+      final time = DateTime.now();
+      if (dir != null) {
+        File file = File(
+            '${dir.path}/artigos_${time.month}${time.day}${time.hour}${time.minute}${time.second}.csv');
+        await file.writeAsString(csvData).then(
+          (value) {
+            _showSuccessSnackBar(context);
+          },
+        ).catchError(
+          (e) {
+            print(
+              e.toString(),
+            );
+            setIsLoading(false);
+          },
+        );
+      }
+    } catch (e) {
+      print(e.toString());
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   bool isLoading = false;
   void setIsLoading(bool value) {
     setState(() {
@@ -84,43 +132,8 @@ class _SavedPageState extends State<SavedPage> {
                           Brightness.dark
                       ? Theme.of(context).colorScheme.tertiary
                       : Theme.of(context).colorScheme.secondary,
-                  onPressed: isLoading
-                      ? null
-                      : () async {
-                          final response =
-                              context.read<SavedViewModel>().favorites;
-                          if (response.isEmpty) return;
-
-                          setIsLoading(true);
-
-                          final csvData = getData(response);
-
-                          try {
-                            final dir = await getDownloadsDirectory();
-
-                            final time = DateTime.now();
-                            if (dir != null) {
-                              File file = File(
-                                  '${dir.path}/artigos_${time.month}${time.day}${time.hour}${time.minute}${time.second}.csv');
-                              await file.writeAsString(csvData).then(
-                                (value) {
-                                  _showSuccessSnackBar(context);
-                                },
-                              ).catchError(
-                                (e) {
-                                  print(
-                                    e.toString(),
-                                  );
-                                  setIsLoading(false);
-                                },
-                              );
-                            }
-                          } catch (e) {
-                            print(e.toString());
-                          } finally {
-                            setIsLoading(false);
-                          }
-                        },
+                  onPressed:
+                      isLoading ? null : () async => _downloadCsv(context),
                   child: isLoading
                       ? CircularProgressIndicator(
                           color: Theme.of(context).colorScheme.brightness ==
